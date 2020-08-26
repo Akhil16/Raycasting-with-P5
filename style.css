@@ -1,0 +1,20 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #555;
+}
+
+#main {
+    margin: auto;
+    background-color: #81d4fa82;
+}
+
+canvas {
+    /* width: 800px;
+    height: 600px; */
+    display: block;
+    margin: 0 auto;
+    background-color: black;
+    /* border: 1px solid #fff; */
+}
