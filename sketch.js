@@ -11,6 +11,9 @@ const MINIMAP_SCALE_FACTOR = 0.2;
 const VISION_ANGLE = Math.PI / 3;
 const RAY_WIDTH = 2; // can be increased for optimization
 const NUM_RAYS = WINDOW_WIDTH / RAY_WIDTH;
+// FPS
+let FPS = 0
+const SECONDS_TO_REFRESH_FPS = 1
 class Map {
     constructor() {
         this.grid = [
@@ -319,6 +322,23 @@ function render3DProjectedWalls() {
     }
 }
 
+function setUpFontFPS() {
+    fill(255,255,255);
+    noStroke()
+    textSize(14)
+}
+
+function updateFPS() {
+    setUpFontFPS()
+    let fpsRate = parseInt(getFrameRate())
+    if(frameCount % (SECONDS_TO_REFRESH_FPS * 60) == 0) {
+	text('FPS: ' + fpsRate, WINDOW_WIDTH - 70, 30);
+	FPS = parseInt(getFrameRate())
+    } else {
+	FPS = FPS === 0 ?fpsRate :FPS
+	text('FPS: ' + FPS, WINDOW_WIDTH - 70, 30)
+    }
+}
 
 function setup() {
     // initialize all objects
@@ -345,6 +365,9 @@ function draw() {
         ray.render()
     }
     player.render()
+    
+    // FPS
+    updateFPS()
 }
 
 // actions
